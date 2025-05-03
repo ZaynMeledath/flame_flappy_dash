@@ -17,7 +17,7 @@ class Dash extends PositionComponent
   Dash()
       : super(
           position: Vector2(0, 0),
-          size: Vector2.all(80.0),
+          size: Vector2.all(Config.dashSize),
           anchor: Anchor.center,
           priority: 10,
         );

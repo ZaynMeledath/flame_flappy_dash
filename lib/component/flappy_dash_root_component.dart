@@ -39,14 +39,6 @@ class FlappyDashRootComponent extends Component
     }
   }
 
-  // void _removeLastPipes() {
-  //   final pipes = children.whereType<PipePair>();
-  //   final shouldBeRemoved = max(pipes.length - 5, 0);
-  //   pipes.take(shouldBeRemoved).forEach((pipe) {
-  //     pipe.removeFromParent();
-  //   });
-  // }
-
   void onSpaceDown() {
     _checkToStart();
     _dash.jump();
@@ -70,7 +62,6 @@ class FlappyDashRootComponent extends Component
       _generatePipes(
         fromX: Config.pipesDistance,
       );
-      // _removeLastPipes();
     }
     game.camera.viewfinder.zoom = 1.0;
   }
