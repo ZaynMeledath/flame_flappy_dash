@@ -7,18 +7,18 @@ class TopScore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return BlocBuilder<GameCubit, GameState>(
       builder: (context, state) {
         return Align(
           alignment: Alignment.topCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 24.0),
-            child: Text(
-              state.currentScore.toString(),
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 38,
-              ),
+          child: Text(
+            state.currentScore.toString(),
+            style: TextStyle(
+              color: const Color.fromARGB(255, 0, 78, 151),
+              fontSize: screenWidth * .09,
+              height: 1.2,
             ),
           ),
         );

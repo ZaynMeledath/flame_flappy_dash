@@ -5,6 +5,7 @@ import 'package:flame/events.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/flappy_dash_game.dart';
+import 'package:flappy_dash/src/configuration.dart';
 
 import 'dash.dart';
 import 'dash_parallax_background.dart';
@@ -14,7 +15,6 @@ class FlappyDashRootComponent extends Component
     with HasGameRef<FlappyDashGame>, FlameBlocReader<GameCubit, GameState> {
   late Dash _dash;
   late PipePair _lastPipe;
-  static const _pipesDistance = 400.0;
 
   @override
   Future<void> onLoad() async {
@@ -34,18 +34,18 @@ class FlappyDashRootComponent extends Component
       const area = 600;
       final y = (Random().nextDouble() * area) - (area / 2);
       add(_lastPipe = PipePair(
-        position: Vector2(fromX + (i * _pipesDistance), y),
+        position: Vector2(fromX + (i * Config.pipesDistance), y),
       ));
     }
   }
 
-  void _removeLastPipes() {
-    final pipes = children.whereType<PipePair>();
-    final shouldBeRemoved = max(pipes.length - 5, 0);
-    pipes.take(shouldBeRemoved).forEach((pipe) {
-      pipe.removeFromParent();
-    });
-  }
+  // void _removeLastPipes() {
+  //   final pipes = children.whereType<PipePair>();
+  //   final shouldBeRemoved = max(pipes.length - 5, 0);
+  //   pipes.take(shouldBeRemoved).forEach((pipe) {
+  //     pipe.removeFromParent();
+  //   });
+  // }
 
   void onSpaceDown() {
     _checkToStart();
@@ -68,9 +68,9 @@ class FlappyDashRootComponent extends Component
     super.update(dt);
     if (_dash.x >= _lastPipe.x) {
       _generatePipes(
-        fromX: _pipesDistance,
+        fromX: Config.pipesDistance,
       );
-      _removeLastPipes();
+      // _removeLastPipes();
     }
     game.camera.viewfinder.zoom = 1.0;
   }

@@ -7,6 +7,7 @@ import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/component/hidden_coin.dart';
 import 'package:flappy_dash/component/pipe.dart';
 import 'package:flappy_dash/flappy_dash_game.dart';
+import 'package:flappy_dash/src/configuration.dart';
 
 class Dash extends PositionComponent
     with
@@ -23,9 +24,7 @@ class Dash extends PositionComponent
 
   late Sprite _dashSprite;
 
-  final Vector2 _gravity = Vector2(0, 1400.0);
   Vector2 _velocity = Vector2(0, 0);
-  final Vector2 _jumpForce = Vector2(0, -500);
 
   @override
   Future<void> onLoad() async {
@@ -46,15 +45,19 @@ class Dash extends PositionComponent
     if (bloc.state.currentPlayingState.isNotPlaying) {
       return;
     }
-    _velocity += _gravity * dt;
+    _velocity += Config.gravity * dt;
     position += _velocity * dt;
+
+    if (position.y > gameRef.size.y / 2 + size.y / 2) {
+      bloc.gameOver();
+    }
   }
 
   void jump() {
     if (bloc.state.currentPlayingState.isNotPlaying) {
       return;
     }
-    _velocity = _jumpForce;
+    _velocity = Config.jumpForce;
   }
 
   @override

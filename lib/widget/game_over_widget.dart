@@ -9,6 +9,7 @@ class GameOverWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return BlocBuilder<GameCubit, GameState>(
       builder: (context, state) {
         return BackdropFilter(
@@ -19,33 +20,33 @@ class GameOverWidget extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
+                  Text(
                     'GAME OVER!',
                     style: TextStyle(
-                      color: Color(0xFFFFCA00),
+                      color: const Color(0xFFFFCA00),
                       fontWeight: FontWeight.bold,
-                      fontSize: 48,
+                      fontSize: screenWidth * .116,
                       letterSpacing: 2,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     'Score: ${state.currentScore}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 22,
+                      fontSize: screenWidth * .052,
                       letterSpacing: 2,
                     ),
                   ),
                   const SizedBox(height: 60),
                   ElevatedButton(
                     onPressed: () => context.read<GameCubit>().restartGame(),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'PLAY AGAIN!',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: screenWidth * .052,
                           letterSpacing: 2,
                         ),
                       ),

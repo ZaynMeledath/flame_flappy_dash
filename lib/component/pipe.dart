@@ -1,6 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:flappy_dash/src/configuration.dart';
 
 class Pipe extends PositionComponent {
   late Sprite _pipeSprite;
@@ -10,7 +11,7 @@ class Pipe extends PositionComponent {
   Pipe({
     required this.isFlipped,
     required super.position,
-  }): super(priority: 2);
+  }) : super(priority: 2);
 
   @override
   Future<void> onLoad() async {
@@ -18,8 +19,11 @@ class Pipe extends PositionComponent {
     _pipeSprite = await Sprite.load('pipe.png');
     anchor = Anchor.topCenter;
     final ratio = _pipeSprite.srcSize.y / _pipeSprite.srcSize.x;
-    const width = 82.0;
-    size = Vector2(width, width * ratio);
+
+    size = Vector2(
+      Config.pipeWidth,
+      Config.pipeWidth * ratio,
+    );
     if (isFlipped) {
       flipVertically();
     }

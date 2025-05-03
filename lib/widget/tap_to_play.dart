@@ -6,13 +6,15 @@ class TapToPlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return IgnorePointer(
-      child: const Text(
+      child: Text(
         'TAP TO PLAY',
         style: TextStyle(
-          color: Color(0xFF2387FC),
+          color: const Color(0xFF2387FC),
           fontWeight: FontWeight.bold,
-          fontSize: 38,
+          fontSize: screenWidth * .09,
           letterSpacing: 4,
         ),
       )
@@ -24,7 +26,7 @@ class TapToPlay extends StatelessWidget {
           .scale(
             begin: const Offset(1.0, 1.0),
             end: const Offset(1.2, 1.2),
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 700),
           ),
     );
   }

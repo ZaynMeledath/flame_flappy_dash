@@ -1,4 +1,3 @@
-
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -16,10 +15,10 @@ class FlappyDashGame extends FlameGame<FlappyDashWorld>
   FlappyDashGame(this.gameCubit)
       : super(
           world: FlappyDashWorld(),
-          camera: CameraComponent.withFixedResolution(
-            width: 600,
-            height: 1000,
-          ),
+          // camera: CameraComponent.withFixedResolution(
+          //   width: 400,
+          //   height: 900,
+          // ),
         );
 
   final GameCubit gameCubit;

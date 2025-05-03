@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:flame/game.dart';
-import 'package:flappy_dash/audio_helper.dart';
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/flappy_dash_game.dart';
-import 'package:flappy_dash/service_locator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'widget/game_over_widget.dart';
@@ -52,13 +47,24 @@ class _MainPageState extends State<MainPage> {
           body: Stack(
             children: [
               GameWidget(game: _flappyDashGame),
-              if (state.currentPlayingState.isGameOver) const GameOverWidget(),
+              if (state.currentPlayingState.isGameOver)
+                PopScope(
+                  onPopInvoked: (didPop) {
+                    if (didPop) {
+                      gameCubit.restartGame();
+                    }
+                  },
+                  child: const GameOverWidget(),
+                ),
               if (state.currentPlayingState.isIdle)
                 const Align(
                   alignment: Alignment(0, 0.2),
                   child: TapToPlay(),
                 ),
-              if (state.currentPlayingState.isNotGameOver) const TopScore(),
+              if (state.currentPlayingState.isNotGameOver)
+                const SafeArea(
+                  child: TopScore(),
+                ),
             ],
           ),
         );
