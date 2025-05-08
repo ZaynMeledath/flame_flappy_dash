@@ -1,11 +1,12 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flappy_dash/src/configuration.dart';
 
 class HiddenCoin extends PositionComponent {
   HiddenCoin({
     required super.position,
   }) : super(
-          size: Vector2(50, 50),
+          size: Config.hiddenCoinSize,
           anchor: Anchor.center,
         );
 

@@ -1,11 +1,14 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
+import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/flappy_dash_game.dart';
 import 'package:flappy_dash/src/configuration.dart';
+import 'package:flappy_dash/utils/screen_size.dart';
+import 'package:flutter/animation.dart';
 
 import 'dash.dart';
 import 'dash_parallax_background.dart';
@@ -31,7 +34,7 @@ class FlappyDashRootComponent extends Component
     double fromX = 0.0,
   }) {
     for (int i = 0; i < count; i++) {
-      const area = 600;
+      final area = screenSize.height * .65;
       final y = (Random().nextDouble() * area) - (area / 2);
       add(_lastPipe = PipePair(
         position: Vector2(fromX + (i * Config.pipesDistance), y),
@@ -51,6 +54,13 @@ class FlappyDashRootComponent extends Component
 
   void _checkToStart() {
     if (bloc.state.currentPlayingState.isIdle) {
+      _dash.add(MoveByEffect(
+        Vector2(-gameRef.size.x * .25, 0),
+        EffectController(
+          duration: .5,
+          curve: Curves.easeInOut,
+        ),
+      ));
       bloc.startPlaying();
     }
   }
@@ -63,6 +73,6 @@ class FlappyDashRootComponent extends Component
         fromX: Config.pipesDistance,
       );
     }
-    game.camera.viewfinder.zoom = 1.0;
+    // game.camera.viewfinder.zoom = 1.0;
   }
 }

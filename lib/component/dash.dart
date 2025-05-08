@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_bloc/flame_bloc.dart';
@@ -45,10 +44,12 @@ class Dash extends PositionComponent
     if (bloc.state.currentPlayingState.isNotPlaying) {
       return;
     }
+
     _velocity += Config.gravity * dt;
     position += _velocity * dt;
 
-    if (position.y > gameRef.size.y / 2 + size.y / 2) {
+    if (position.y > (gameRef.size.y / 2) + (size.y / 2) ||
+        position.y < -(gameRef.size.y / 2) + (size.y / 2)) {
       bloc.gameOver();
     }
   }

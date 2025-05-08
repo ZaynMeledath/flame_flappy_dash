@@ -2,6 +2,7 @@ import 'package:flappy_dash/audio_helper.dart';
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/main_page.dart';
 import 'package:flappy_dash/service_locator.dart';
+import 'package:flappy_dash/utils/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getInitialScreenSize(context: context);
     return BlocProvider(
       create: (BuildContext context) => GameCubit(
         getIt.get<AudioHelper>(),

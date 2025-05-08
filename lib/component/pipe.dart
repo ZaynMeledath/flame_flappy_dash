@@ -18,11 +18,10 @@ class Pipe extends PositionComponent {
     await super.onLoad();
     _pipeSprite = await Sprite.load('pipe.png');
     anchor = Anchor.topCenter;
-    final ratio = _pipeSprite.srcSize.y / _pipeSprite.srcSize.x;
 
     size = Vector2(
       Config.pipeWidth,
-      Config.pipeWidth * ratio,
+      Config.pipeHeight,
     );
     if (isFlipped) {
       flipVertically();
