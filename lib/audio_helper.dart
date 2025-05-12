@@ -1,3 +1,4 @@
+import 'package:flappy_dash/src/assets.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 
 class AudioHelper {
@@ -13,8 +14,8 @@ class AudioHelper {
       return;
     }
     await _soLoud.init();
-    _backgroundSource = await _soLoud.loadAsset('assets/audio/background.mp3');
-    _scoreSource = await _soLoud.loadAsset('assets/audio/score.mp3');
+    _backgroundSource = await _soLoud.loadAsset(Assets.backgroundAudio);
+    _scoreSource = await _soLoud.loadAsset(Assets.scoreAudio);
   }
 
   void playBackgroundAudio() async {

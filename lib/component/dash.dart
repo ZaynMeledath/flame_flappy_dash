@@ -6,6 +6,7 @@ import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/component/hidden_coin.dart';
 import 'package:flappy_dash/component/pipe.dart';
 import 'package:flappy_dash/flappy_dash_game.dart';
+import 'package:flappy_dash/src/assets.dart';
 import 'package:flappy_dash/src/configuration.dart';
 
 class Dash extends PositionComponent
@@ -28,7 +29,7 @@ class Dash extends PositionComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    _dashSprite = await Sprite.load('dash.png');
+    _dashSprite = await Sprite.load(Assets.dash);
     final radius = size.x / 2;
     final center = size / 2;
     add(CircleHitbox(

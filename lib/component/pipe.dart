@@ -1,6 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
+import 'package:flappy_dash/src/assets.dart';
 import 'package:flappy_dash/src/configuration.dart';
 
 class Pipe extends PositionComponent {
@@ -16,7 +17,7 @@ class Pipe extends PositionComponent {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    _pipeSprite = await Sprite.load('pipe.png');
+    _pipeSprite = await Sprite.load(Assets.pipe);
     anchor = Anchor.topCenter;
 
     size = Vector2(

@@ -3,6 +3,7 @@ import 'package:flame/parallax.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flappy_dash/bloc/game/game_cubit.dart';
 import 'package:flappy_dash/flappy_dash_game.dart';
+import 'package:flappy_dash/src/assets.dart';
 
 class DashParallaxBackground extends ParallaxComponent<FlappyDashGame>
     with FlameBlocReader<GameCubit, GameState> {
@@ -12,13 +13,13 @@ class DashParallaxBackground extends ParallaxComponent<FlappyDashGame>
     anchor = Anchor.center;
     parallax = await game.loadParallax(
       [
-        ParallaxImageData('background/layer1-sky.png'),
-        ParallaxImageData('background/layer2-clouds.png'),
-        ParallaxImageData('background/layer3-clouds.png'),
-        ParallaxImageData('background/layer4-clouds.png'),
-        ParallaxImageData('background/layer5-huge-clouds.png'),
-        ParallaxImageData('background/layer6-bushes.png'),
-        ParallaxImageData('background/layer7-bushes.png'),
+        ParallaxImageData(Assets.backgroundSkyLayer1),
+        ParallaxImageData(Assets.backgroundCloudsLayer2),
+        ParallaxImageData(Assets.backgroundCloudsLayer3),
+        ParallaxImageData(Assets.backgroundCloudsLayer4),
+        ParallaxImageData(Assets.backgroundHugeCloudsLayer5),
+        ParallaxImageData(Assets.backgroundBushesLayer6),
+        ParallaxImageData(Assets.backgroundTreesLayer7),
       ],
       baseVelocity: Vector2(1, 0),
       velocityMultiplierDelta: Vector2(1.7, 0),
